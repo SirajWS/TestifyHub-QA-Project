@@ -8,7 +8,7 @@
 
 \*Tester:\* Khalil Nasri  
 
-\*Status:\* 🟢 Passed  
+\*Status:\* in bearbeitung 
 
 \*Datum:\* 15.07.2025
 
