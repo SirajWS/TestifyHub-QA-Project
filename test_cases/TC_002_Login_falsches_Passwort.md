@@ -8,7 +8,7 @@
 
 \*Tester:\* Khalil Nasri  
 
-\*Status:\* 🔴 Failed  
+\*Status:\* in bearbeitung  
 
 \*Datum:\* 15.07.2025
 
