@@ -35,21 +35,37 @@ sudo dnf install google-chrome-stable
 
 ## Configuration
 
-Before running the script, update the configuration variables in `taxi_automation.py`:
+Before running the script, update the configuration in `config.py`:
 
 ```python
-# ==== CONFIGURATION ====
-email = "your-email@example.com"        # Your account email
-password = "your-password"               # Your account password
-adresse_depart = "Your departure address"
-adresse_arrivee = "Your destination address"
+# Login Credentials
+EMAIL = "your-email@example.com"         # Your actual email
+PASSWORD = "your-password"               # Your actual password
+
+# Trip Details
+DEPARTURE_ADDRESS = "Your departure address"
+ARRIVAL_ADDRESS = "Your destination address"
+
+# Browser Settings
+HEADLESS_MODE = False                    # Set to True for background execution
 ```
 
 ## Usage
 
-Run the automation script:
+### Quick Start
+
+The easiest way to run the script:
 
 ```bash
+./run_script.sh
+```
+
+### Manual Execution
+
+Alternatively, activate the virtual environment and run the script manually:
+
+```bash
+source venv/bin/activate
 python taxi_automation.py
 ```
 
@@ -67,28 +83,37 @@ python taxi_automation.py
 - **Additional Chrome options**: Added `--no-sandbox` and `--disable-dev-shm-usage` for Linux compatibility
 - **Directory creation**: Automatically creates the profile directory if it doesn't exist
 - **Better error handling**: Improved error messages and graceful exits
+- **Configuration file**: Separate `config.py` for easy credential and setting management
+- **Multiple selector support**: Tries multiple XPath selectors for better compatibility
+- **Auto-detection prevention**: Includes measures to avoid bot detection
 
 ## Headless Mode
 
-To run the script without opening a browser window (headless mode), uncomment this line in the script:
+To run the script without opening a browser window (headless mode), set this in `config.py`:
 
 ```python
-options.add_argument("--headless")
+HEADLESS_MODE = True
 ```
 
 ## Security Notes
 
-⚠️ **Important**: This script contains hardcoded credentials. For production use:
+⚠️ **Important**: Keep your credentials secure:
 
-1. Use environment variables for sensitive data:
-```python
-import os
-email = os.getenv('TAXI_EMAIL')
-password = os.getenv('TAXI_PASSWORD')
+1. **Never commit real credentials** to version control
+2. **Use environment variables** for sensitive data:
+```bash
+export TAXI_EMAIL="your-email@example.com"
+export TAXI_PASSWORD="your-password"
 ```
 
-2. Consider using encrypted credential storage
-3. Never commit real credentials to version control
+3. **Update config.py** with environment variables:
+```python
+import os
+EMAIL = os.getenv('TAXI_EMAIL', 'default-email@example.com')
+PASSWORD = os.getenv('TAXI_PASSWORD', 'default-password')
+```
+
+4. Consider using encrypted credential storage for production use
 
 ## Troubleshooting
 
